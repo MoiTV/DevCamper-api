@@ -11,12 +11,11 @@ exports.getBootcamps = async(req, res, next) => {
             success: true,
             count: bootcamps.length,
             data: bootcamps
-        })
-
+        });
     } catch (error) {
         res.status(400).json({
             success: false
-        })
+        });
     }
 };
 
@@ -30,18 +29,17 @@ exports.getBootcamp = async(req, res, next) => {
         if (!bootcamp) {
             return res.status(400).json({
                 success: false
-            })
+            });
         }
 
         res.status(200).json({
             success: true,
             data: bootcamp
-        })
-
+        });
     } catch (error) {
         res.status(400).json({
             success: false
-        })
+        });
     }
 };
 
@@ -55,13 +53,12 @@ exports.createBootcamp = async(req, res, next) => {
         res.status(201).json({
             success: true,
             data: bootcamp
-        })
+        });
     } catch (error) {
         res.status(400).json({
             success: false
-        })
+        });
     }
-
 };
 
 // @desc      Update bootcamp
@@ -69,26 +66,28 @@ exports.createBootcamp = async(req, res, next) => {
 // @access    Private
 exports.updateBootcamp = async(req, res, next) => {
     try {
-        const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
+        const bootcamp = await Bootcamp.findByIdAndUpdate(
+            req.params.id,
+            req.body, {
+                new: true,
+                runValidators: true
+            }
+        );
 
         if (!bootcamp) {
             return res.status(400).json({
                 success: false
-            })
+            });
         }
 
         res.status(200).json({
             success: true,
             data: bootcamp
-        })
-
+        });
     } catch (error) {
         res.status(400).json({
             success: false
-        })
+        });
     }
 };
 
@@ -102,17 +101,16 @@ exports.deleteBootcamp = async(req, res, next) => {
         if (!bootcamp) {
             return res.status(400).json({
                 success: false
-            })
+            });
         }
 
         res.status(200).json({
             success: true,
             data: {}
-        })
-
+        });
     } catch (error) {
         res.status(400).json({
             success: false
-        })
+        });
     }
 };
