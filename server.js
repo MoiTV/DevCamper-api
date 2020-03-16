@@ -29,6 +29,7 @@ app.use(express.urlencoded({
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 
+
 // Error Handler
 app.use(errorHandler);
 
