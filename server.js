@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -18,17 +17,19 @@ connectDB();
 // Route files
 const bootcamps = require('./routes/bootcamps');
 
+// Init express
 const app = express();
 
-// Body parser
+// Body parser(middleware)
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: false
-}));
+app.use(
+    express.urlencoded({
+        extended: false
+    })
+);
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
-
 
 // Error Handler
 app.use(errorHandler);
