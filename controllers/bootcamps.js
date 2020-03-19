@@ -7,7 +7,17 @@ const Bootcamp = require('../model/Bootcamp');
 // @route     GET /api/v1/bootcamps
 // @access    Public
 exports.getBootcamps = asyncHandler(async(req, res, next) => {
-    const bootcamps = await Bootcamp.find();
+    let query;
+
+    let queryString = JSON.stringify(req.query);
+
+    queryString = queryString.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+    query = Bootcamp.find(JSON.parse(queryString));
+
+    console.log(queryString)
+
+    const bootcamps = await query;
 
     res.status(200).json({
         success: true,
@@ -125,6 +135,7 @@ exports.getBootcampInRadius = asyncHandler(async(req, res, next) => {
 
     res.status(200).json({
         success: true,
-        count: bootcamps.length
+        count: bootcamps.length,
+        data: bootcamps
     })
 });
