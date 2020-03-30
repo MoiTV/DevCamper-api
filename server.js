@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const morgan = require('morgan');
+const morgan = require('morgan')
 const errorHandler = require('./middleware/error');
 const colors = require('colors');
 
@@ -16,6 +16,7 @@ connectDB();
 
 // Route files
 const bootcamps = require('./routes/bootcamps');
+const courses = require('./routes/courses');
 
 // Init express
 const app = express();
@@ -30,6 +31,7 @@ app.use(
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 // Error Handler
 app.use(errorHandler);
